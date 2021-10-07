@@ -38,7 +38,7 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src="assets/img/profile-img.jpg" alt="" class="rounded-circle">
+        <a href="game.html" target="blank"><img src="assets/img/profile-img.jpg" alt="" class="rounded-circle"></a>
         <h1 class="text-light"><a href="index.html">MacoyTzy</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="https://twitter.com/macoytzy" class="twitter" target="_blank"><i class="bx bxl-twitter"></i></a>
@@ -54,13 +54,15 @@
           <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
           <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
           <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+          <li><a href="" class="nav-link scrollto"><i class="bx bx-music"></i> <span>SountTrip</span></a></li>
           <li><a href="https://kamacoyfiles.000webhostapp.com/download.php?id=5" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
         
         </ul>
         <audio controls volume="0.5" autoplay loop controlsList="nodownload">
           <source src="assets/mp3/atlantis.mp3" type="audio/mpeg">
         Error
-        </audio>
+        </audio> 
+      
       </nav><!-- .nav-menu -->
     </div>
   </header><!-- End Header -->
@@ -87,7 +89,7 @@
 
         <div class="row">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+          <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3>Basic Info &amp; About me.</h3>
@@ -319,12 +321,15 @@
 
               </form>
             </div>
-  
+            <canvas id="canvas" width="180" height="180"
+            style="background-color:rgba(51, 51, 51, 0)">
+          </canvas> 
           </div>
-  
         </div>
       </section><!-- End Contact Section -->
-
+      <!-- ======= music Section ======= -->
+      
+    </section><!-- End music Section -->
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -346,7 +351,6 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <!--<script src="assets/vendor/php-email-form/validate.js"></script> -->
   <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
@@ -354,8 +358,89 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  
 <!-- Other Scripts here -->
 <script>
+  /* Live clock */
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var radius = canvas.height / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90
+setInterval(drawClock, 1000);
+
+function drawClock() {
+  drawFace(ctx, radius);
+  drawNumbers(ctx, radius);
+  drawTime(ctx, radius);
+}
+
+function drawFace(ctx, radius) {
+  var grad;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+  grad.addColorStop(0, '#333');
+  grad.addColorStop(0.5, 'white');
+  grad.addColorStop(1, '#333');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.1;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+  ctx.fillStyle = '#333';
+  ctx.fill();
+}
+
+function drawNumbers(ctx, radius) {
+  var ang;
+  var num;
+  ctx.font = radius*0.15 + "px arial";
+  ctx.textBaseline="middle";
+  ctx.textAlign="center";
+  for(num = 1; num < 13; num++){
+    ang = num * Math.PI / 6;
+    ctx.rotate(ang);
+    ctx.translate(0, -radius*0.85);
+    ctx.rotate(-ang);
+    ctx.fillText(num.toString(), 0, 0);
+    ctx.rotate(ang);
+    ctx.translate(0, radius*0.85);
+    ctx.rotate(-ang);
+  }
+}
+
+function drawTime(ctx, radius){
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    // second
+    second=(second*Math.PI/30);
+    drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+
+function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+}
   /* Disable Inspect Element */
   document.onkeydown = function(e) {
   if(event.keyCode == 123) {

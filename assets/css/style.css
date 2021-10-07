@@ -63,13 +63,21 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 9997;
   transition: all 0.5s;
   padding: 0 15px;
-  background: #000000;
-  overflow-y: auto;
-  animation: mymove 5s infinite;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
 }
-@keyframes mymove {
-  from {background-color: black;}
-  to {background-color: rgb(13, 4, 44);}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 #header .profile img {
@@ -662,3 +670,4 @@ section {
     padding-right: 20px 15px;
   }
 }
+

@@ -4,6 +4,8 @@ Ka Macoy/MacoyTzy Personal Website 1.0
 
 
 Changelogs:
+  - Added some random games when clicking a secret link
+  - Changed cursor to default when clicking a link
   - Added a game (where? just find it) (Thanks to Marco)
   - Changed color schemes to animated gradient color in header (Thanks to Marco)
   - Fixed slider issues (Thanks to Marco)

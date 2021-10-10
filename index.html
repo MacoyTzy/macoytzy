@@ -38,7 +38,7 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <a href="game.html" target="blank"><img src="assets/img/profile-img.jpg" alt="" class="rounded-circle"></a>
+        <a href="#" onclick="randomSite();" target="_blank"><img src="assets/img/profile-img.jpg" alt="" class="rounded-circle"></a>
         <h1 class="text-light"><a href="index.html">MacoyTzy</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="https://twitter.com/macoytzy" class="twitter" target="_blank"><i class="bx bxl-twitter"></i></a>
@@ -361,6 +361,21 @@
   
 <!-- Other Scripts here -->
 <script>
+  /* random games when clicking the profile picture */ 
+  var sites = [
+        'assets/othergames/bullseye/bullseyedarts.html',
+        'assets/othergames/cubesmasher/cubesmasher.html',
+        'assets/othergames/pacmangame/pacman.html',
+        'assets/othergames/snake/snake.html',
+        './game.html'
+    ];
+
+    function randomSite() {
+        var i = parseInt(Math.random() * sites.length);
+        location.href = sites[i];
+    }
+
+
   /* Live clock */
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");

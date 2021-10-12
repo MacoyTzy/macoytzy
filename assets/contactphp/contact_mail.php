@@ -14,7 +14,7 @@ $mail->Mailer   = "smtp"; //type of email service either smtp or imap. Smtp serv
 //while an IMAP service means that you are using the service to recieve an incoming emails.
 $mail->SetFrom($_POST["marcopogi88@gmail.com"], $_POST["Marco"]); //set sender (use current account deets provided by you)
 $mail->AddReplyTo($_POST["userEmail"], $_POST["userName"]); //set email reply address
-$mail->AddAddress("parientesmarisol18@gmail.com");	//set email recipient
+$mail->AddAddress("testreciever@gmail.com");	//set email recipient
 $mail->Subject = $_POST["subject"]; //default email subject
 $mail->WordWrap   = 80; //set default message maximum characters
 $mail->MsgHTML($_POST["content"]); //default email message body

@@ -8,7 +8,7 @@ $mail->SMTPAuth = TRUE; //set default smtp or imap authentication
 $mail->SMTPSecure = "ssl"; //indentifies secure connection type either tls or ssl
 $mail->Port     = 465;   //secure connection port 465 if ssl, 587 if tls.
 $mail->Username = "marcoabra88@gmail.com"; //Your User Email in GMAIL
-$mail->Password = "akosikate23"; //your password in GMAIL
+$mail->Password = ""; //your password in GMAIL
 $mail->Host     = "smtp.gmail.com"; //smtp or imap host address from an Email Provider like GMAIL
 $mail->Mailer   = "smtp"; //type of email service either smtp or imap. Smtp service method means you are using the service to send an email
 //while an IMAP service means that you are using the service to recieve an incoming emails.
